@@ -60,8 +60,109 @@ class Array
     
 end
 
-arr = [1,[2],3]
-new_arr = arr.deep_dup
-new_arr[1] << 4
-p arr
-p new_arr
+# arr = [1,[2],3]
+# new_arr = arr.deep_dup
+# new_arr[1] << 4
+# p arr
+# p new_arr
+
+def fibonacci_it(n)
+    return nil if n <= 0
+    return 1 if n == 1 || n == 2
+    fib = [1,1]
+    i = 2
+    while i < n
+        fib[i] = fib[i - 1] + fib[i - 2]
+        i += 1
+    end
+    fib[-1]
+end
+
+# # 1,1,2,3,5,8,13,21,34
+# # 1 2 3 4 5 6  7  8  9
+# p fibonacci_it(0)
+# p fibonacci_it(-5)
+# p fibonacci_it(1)
+# p fibonacci_it(2)
+# p fibonacci_it(3)
+# p fibonacci_it(4)
+# p fibonacci_it(5)
+# p fibonacci_it(6)
+# p fibonacci_it(60)
+
+
+def fibonacci_rec(n)
+    return nil if n <= 0
+    return 1 if n == 1 || n == 2
+    fibonacci_rec(n-2) + fibonacci_rec(n-1)
+end
+
+# # 1,1,2,3,5,8,13,21,34
+# # 1 2 3 4 5 6  7  8  9
+# p fibonacci_rec(-5)
+# p fibonacci_rec(0)
+# p fibonacci_rec(1)
+# p fibonacci_rec(2)
+# p fibonacci_rec(3)
+# p fibonacci_rec(4)
+# p fibonacci_rec(5)
+# p fibonacci_rec(6)
+# p fibonacci_rec(60)
+
+def bsearch(array, target)
+    return nil if !array.include?(target)
+
+    middle = array.length/2 # for even, the later middle
+    # index = 0
+
+    if array[middle] == target
+        return middle
+    elsif array[middle] > target
+        bsearch(array[0...middle], target)
+    else
+        1 + middle + bsearch(array[(middle+1)..-1], target)
+    end
+
+end
+
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+
+
+
+def merge_sort(arr)
+    new_arr = []
+  return [] if arr.empty?
+  return arr[0] if arr.length == 1
+  middle = arr.length/2
+  left = arr[0...middle]
+  right = arr[middle..-1]
+#   if merge_sort(left) < merge_sort(right)
+#     merge(left, new_arr )
+#   else
+#     merge(right,new_arr )
+#   end
+merge
+  
+end
+
+# def merge(small, sorted)
+#     # sorted << small[0]
+#     # sorted
+# end
+
+def merge(arr1, arr2)
+    new_arr = []
+
+    while
+end
+
+arr1 = [2,4,6]
+arr2 =[3, 5, 7]
+
+p merge_sort([5, 9, 4, 2, 5, 68])
