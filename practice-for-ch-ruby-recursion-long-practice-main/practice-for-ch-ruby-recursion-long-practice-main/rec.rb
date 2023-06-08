@@ -138,31 +138,35 @@ end
 def merge_sort(arr)
     new_arr = []
   return [] if arr.empty?
-  return arr[0] if arr.length == 1
+  return arr if arr.length == 1
   middle = arr.length/2
   left = arr[0...middle]
   right = arr[middle..-1]
-#   if merge_sort(left) < merge_sort(right)
-#     merge(left, new_arr )
-#   else
-#     merge(right,new_arr )
-#   end
-merge
-  
+ 
+  merge(merge_sort(left),merge_sort(right))
+
 end
 
-# def merge(small, sorted)
-#     # sorted << small[0]
-#     # sorted
-# end
+def merge(arr1,arr2)
+    sorted = []
 
-def merge(arr1, arr2)
-    new_arr = []
-
-    while
+    while !(arr1.empty? || arr2.empty?)
+        if arr1[0] < arr2[0]
+            sorted << arr1[0]
+            arr1.shift
+        else
+            sorted << arr2[0]
+            arr2.shift
+        end
+    end
+    if arr1.empty?
+        return sorted + arr2
+    end
+    if arr2.empty?
+        return sorted + arr1
+    end
 end
 
-arr1 = [2,4,6]
-arr2 =[3, 5, 7]
-
-p merge_sort([5, 9, 4, 2, 5, 68])
+linear = *(0...100000)
+arr = (linear).shuffle
+puts merge_sort(arr)
